@@ -6,7 +6,7 @@
 FILES="resources/js/components/organizms/*"
 for f in $FILES
 do
-    bname=$(basename "$f")
+    bname=$(basename "$f" ".vue")
     tname=$(echo "$bname" | sed -r 's/([a-z0-9])([A-Z])/\1-\L\2/g')
     matches=$(git grep -Pi "(\<$bname|\<$tname)" | grep -v "public/js/app.js:" | grep -v "resources/js/components/organizms/index.js:" | egrep -v "^public/.*")
     cnt=$(echo "$matches" | grep -vc '^$')
